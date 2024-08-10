@@ -1,0 +1,25 @@
+.green{
+  color:#7fad39;
+}
+
+#category-shop-grid-menu li:hover {
+  color:#7fad39;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+#category-shop-grid-menu li.active {
+  font-weight: bold;
+  background-color: #f0f0f0;
+}
+
+.active-filter-btn {
+  background-color: var(--pink) !important;
+  color: #fff !important;
+  border-color: var(--pink) !important;
+}
+
+.filter-button-group .btn:hover {
+  color: #fff !important;
+}

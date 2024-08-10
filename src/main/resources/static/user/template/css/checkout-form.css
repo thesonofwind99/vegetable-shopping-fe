@@ -1,0 +1,75 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.full-height {
+    height: 100vh;
+    /* 100% viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    flex-grow: 1;
+    display: flex;
+}
+
+.vertical-divider {
+    border-left: 2px solid #dcdada;
+    height: auto;
+}
+
+.text {
+    color: rgb(63, 176, 214);
+    letter-spacing: 0.2em;
+    /* Adjust this value to stretch the text more or less */
+    text-shadow: 5px 5px 8px rgba(240, 247, 148, 0.5);
+    /* Shadow with offset (2px horizontal, 2px vertical), blur radius (4px), and color */
+}
+
+.horizontal-divider {
+    border-bottom: 2px solid #dcdada;
+    width: calc(100% + 80px);
+    /* Trừ đi 2px để bù vào việc có border-left ở vertical-divider */
+    margin-left: -12px;
+    /* Đưa phần border-left của vertical-divider lại phía trước */
+    margin-top: 0.3rem;
+}
+
+.horizontal-divider1 {
+    border-bottom: 2px solid #dcdada;
+    width: calc(100% + 55px);
+    /* Trừ đi 2px để bù vào việc có border-left ở vertical-divider */
+    margin-left: 18px;
+    /* Đưa phần border-left của vertical-divider lại phía trước */
+    margin-top: 0.3rem;
+}
+
+.form-control::placeholder {
+    color: rgb(191, 193, 191);
+    font-weight: bold;
+}
+
+.input-group .btn {
+    border: 1px solid #ced4da;
+    /* Định dạng viền cho nút button */
+    border-radius: 0;
+    /* Loại bỏ viền cong */
+}
+
+.img-border {
+    border: 2px solid #ced4da;
+    /* Định dạng border cho ảnh */
+    border-radius: 8px;
+    /* Bo tròn các góc của border */
+    transition: transform 0.3s ease-in-out;
+    /* Hiệu ứng chuyển đổi */
+}
+
+.img-border:hover {
+    transform: scale(1.1);
+    /* Hiệu ứng phóng to khi di chuột vào */
+}

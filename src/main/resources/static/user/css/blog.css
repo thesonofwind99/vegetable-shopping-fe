@@ -1,0 +1,44 @@
+.blog__item__pic {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog__item__pic img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+.blog__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.blog__item__text {
+    flex-grow: 1;
+}
+
+.blog__item__text h5 {
+    height: 50px;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.blog__item__text .truncatete {
+    margin-top: 10px;
+    height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}

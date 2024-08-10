@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vegetable-Store | Admin</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback}">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" th:href="@{/admin/plugins/fontawesome-free/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css}"
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}">
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}">
+    <!-- css index -->
+    <link rel="stylesheet" th:href="@{/admin/css/index.css}">
+    <!--sweet alert-->
+    <!--SweetAlert2 CSS and JS-->
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/sweetalert2@11.4.22/dist/sweetalert2.min.css}">
+
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/sweetalert2@10}">
+
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css}" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js}"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+
+    <!--axios-->
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js}"
+            integrity="sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="index3.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Contact</a>
+            </li>
+        </ul>
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Navbar Search -->
+            <li class="nav-item">
+                <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                    <i class="fas fa-search"></i>
+                </a>
+                <div class="navbar-search-block">
+                    <form class="form-inline">
+                        <div class="input-group input-group-sm">
+                            <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                                   aria-label="Search" accept="image/png, image/jpeg, image/gif">
+                            <div class="input-group-append">
+                                <button class="btn btn-navbar" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+            <!-- Messages Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-comments"></i>
+                    <span class="badge badge-danger navbar-badge">3</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    Brad Diesel
+                                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">Call me whenever you can...</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    John Pierce
+                                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">I got your message bro</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    Nora Silvester
+                                    <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">The subject goes here</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                </div>
+            </li>
+            <!-- Notifications Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-bell"></i>
+                    <span class="badge badge-warning navbar-badge">15</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-header">15 Notifications</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> 4 new messages
+                        <span class="float-right text-muted text-sm">3 mins</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-users mr-2"></i> 8 friend requests
+                        <span class="float-right text-muted text-sm">12 hours</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-file mr-2"></i> 3 new reports
+                        <span class="float-right text-muted text-sm">2 days</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                    <i class="fas fa-th-large"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="index3.html" class="brand-link">
+            <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                 style="opacity: .8">
+            <span class="brand-text font-weight-light">Vegetable_Store</span>
+        </a>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">Alexander Pierce</a>
+                </div>
+            </div>
+            <!-- SidebarSearch Form -->
+            <div class="form-inline">
+                <div class="input-group" data-widget="sidebar-search">
+                    <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                           aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-sidebar">
+                            <i class="fas fa-search fa-fw"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Sidebar Menu -->
+            <nav class="mt-2 slidebar">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                       with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                        <a href="#dashboard" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                DashBoard
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#category" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Category Management
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#product" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Product Management
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#account" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Account Management
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#coupon" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Coupon Management
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#order" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Order Management
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#textEditorBlog" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Blog Management
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Starter Page</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Starter Page</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid main-content" id="main-content">
+                <div id="dashboard">
+                    <div class="row">
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner text-white">
+                                    <div class="row mx-1 d-flex align-items-center">
+                                        <h3 id="count-order-in-7day"></h3>
+                                        <i class="fa-solid fa-gift text-lg mx-1"></i>
+                                    </div>
+                                    <p>New orders last week</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-bag"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="small-box bg-success">
+                                <div class="inner text-white">
+                                    <div class="row mx-1 d-flex align-items-center">
+                                        <h3 id="count-products"></h3>
+                                        <span><i class="fa-brands fa-product-hunt"></i></span>
+                                    </div>
+                                    <p>New products</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-stats-bars"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="small-box text-white bg-warning">
+                                <div class="inner">
+                                    <div class="row mx-1 d-flex align-items-center">
+                                        <div class="col">
+                                            <h3 id="count-users"></h3>
+                                        </div>
+                                        <div class="col">
+                                            <i class="fa-solid fa-user-plus text-lg mx-1"></i>
+                                        </div>
+                                    </div>
+                                    <p>User Register</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-person-add"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3>65</h3>
+                                    <p>Unique Visitors</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-pie-graph"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-7 px-5">
+                            <div class="row">
+                                <div class="col-10 text-center">
+                                    <h3 class="text-red">REVENUE STATISTICS CHART BY MONTH</h3>
+                                </div>
+                                <div class="form-group col-2">
+                                    <select name="report-year" id="report-year" class="form-control">
+                                    </select>
+                                </div>
+                            </div>
+                            <canvas id="report-revenue-by-month"></canvas>
+                        </div>
+                        <div class="row card-body col-md-5">
+                            <div class="row text-center">
+                                <h3 class="text-red">BEST SELLER PRODUCT</h3>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-centered mb-0 table-nowrap text-center">
+                                    <thead class="bg-light">
+                                    <tr>
+                                        <th class="w-25">SST</th>
+                                        <th class="w-50">Name</th>
+                                        <th class="w-25">Quantity Sold</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="top-products">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-5 card-body">
+                        <div class="row text-center">
+                            <h3 class="text-red">TOP USER BUY THE MOST</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-centered mb-0 table-nowrap text-center">
+                                <thead class="bg-light">
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Fullname</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                    <th>Total Amount</th>
+                                    <th>Quantity Order</th>
+                                </tr>
+                                </thead>
+                                <tbody id="top-users-buy-lot-of">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="category">
+                    <div class="modal fade" id="categoryModal">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="category-model-header">Category management</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="form-product" method="post" enctype="multipart/form-data">
+                                        <div class="row mb-3">
+                                            <div class="form-group col-md-6">
+                                                <label for="category-id">Category Id</label>
+                                                <input type="text" class="form-control" id="category-id" disabled>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="category-name">Category Name</label>
+                                                <input type="text" name="category-name" class="form-control"
+                                                       id="category-name"
+                                                       placeholder="Enter the category name">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="form-group col-md-6">
+                                                <label>Category Image</label> <br>
+                                                <label for="category-image">
+                                                    <i id="category-label-image" class="fa-solid fa-plus"></i>
+                                                    <img id="category-image-show" src="" alt="img">
+                                                </label>
+                                                <input type="file" name="category-image" class="form-control"
+                                                       id="category-image"
+                                                       style="display: none">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="add-category" type="button" class="btn btn-primary">Add</button>
+                                    <button id="update-category" type="button" class="btn btn-secondary">Update</button>
+                                    <button id="delete-category" type="button" class="btn btn-danger">Delete</button>
+                                    <button id="reset-category" type="button" class="btn btn-secondary">Reset</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
+                                                data-bs-target="#categoryModal">
+                                            <i class="fa-solid fa-plus"></i> Add Category
+                                        </button>
+                                        <div class="flex-grow-1"></div>
+                                        <input type="text" id="find-category-like-name"
+                                               class="form-control col-4" oninput="findCategoryByCategoryName()"
+                                               placeholder="find by category name?">
+                                    </div>
+
+                                    <div class="table mt-3">
+                                        <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <table class="table table-hover">
+                                                        <thead>
+                                                        <tr role="row">
+                                                            <th>Category Id</th>
+                                                            <th>Category Name</th>
+                                                            <th>Category Image</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="category-table">
+
+                                                        </tbody>
+                                                    </table>
+                                                    <div id="category-pageable" class="text-center">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="product">
+                    <div class="modal fade" id="productModal">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="product-model-header">Product management</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="product-form" class="form-product">
+                                        <div class="row mb-3">
+                                            <!-- Loại Hàng -->
+                                            <div class="form-group col-md-6">
+                                                <label for="product-category-id">Category type</label>
+                                                <select id="product-category-id" class="form-control">
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="product-id">Id</label>
+                                                <input type="text" class="form-control" id="product-id"
+                                                       placeholder="" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="form-group col-md-6">
+                                                <label for="product-name">Name</label>
+                                                <input type="text" class="form-control" id="product-name"
+                                                       placeholder="Enter name product">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="product-quantity">Quantity</label>
+                                                <input type="number" class="form-control" id="product-quantity"
+                                                       placeholder="Enter the quantity"
+                                                       min="1" step="1">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="form-group col-md-6">
+                                                <label for="product-price">Price</label>
+                                                <input type="number" class="form-control" id="product-price"
+                                                       placeholder="Enter the price"
+                                                       min="1" step="10">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="product-weight">Weight</label>
+                                                <input type="number" class="form-control" id="product-weight"
+                                                       placeholder="Enter the weight"
+                                                       step="0.01" min="0">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="form-group col-md-12">
+                                                <label>Product Image</label> <br>
+                                                <label for="product-image">
+                                                    <i id="product-label-image" class="fa-solid fa-plus"></i>
+                                                    <img id="product-image-show" src="" alt="img">
+                                                </label>
+                                                <input type="file" name="product-image" class="form-control"
+                                                       id="product-image"
+                                                       style="display: none">
+                                                <!--image phụ-->
+                                                <div class="group-image-thumbs">
+                                                    <label for="product-image2">
+                                                        <i id="product-label-image2"
+                                                           class="fa-solid fa-plus product-label-image-thumbs"></i>
+                                                        <img class="product-image-thumb" id="product-image-show2" src=""
+                                                             alt="img">
+                                                    </label>
+                                                    <input type="file" name="product-image2" class="form-control"
+                                                           id="product-image2"
+                                                           style="display: none">
+                                                    <label for="product-image3">
+                                                        <i id="product-label-image3"
+                                                           class="fa-solid fa-plus product-label-image-thumbs"></i>
+                                                        <img class="product-image-thumb" id="product-image-show3" src=""
+                                                             alt="img">
+                                                    </label>
+                                                    <input type="file" name="product-image3" class="form-control"
+                                                           id="product-image3"
+                                                           style="display: none">
+                                                    <label for="product-image4">
+                                                        <i id="product-label-image4"
+                                                           class="fa-solid fa-plus product-label-image-thumbs"></i>
+                                                        <img class="product-image-thumb" id="product-image-show4" src=""
+                                                             alt="img">
+                                                    </label>
+                                                    <input type="file" name="product-image4" class="form-control"
+                                                           id="product-image4"
+                                                           style="display: none">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="product-description">Description</label>
+                                            <textarea class="form-control" id="product-description" rows="5"
+                                                      placeholder="Enter the description"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="add-product" type="button" class="btn btn-primary">Add</button>
+                                    <button id="update-product" type="button" class="btn btn-secondary">Update</button>
+                                    <button id="delete-product" type="button" class="btn btn-danger">Delete</button>
+                                    <button id="reset-product" type="button" class="btn btn-secondary">Reset</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
+                                                data-bs-target="#productModal">
+                                            <i class="fa-solid fa-plus"></i> Add Product
+                                        </button>
+                                        <div class="flex-grow-1"></div>
+                                        <input type="text" id="find-product-like-name" class="form-control col-4"
+                                               oninput="getProductsLikeProductName()"
+                                               placeholder="find by product name?">
+                                    </div>
+                                    <div class="table mt-3">
+                                        <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <table class="table table-hover">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Id</th>
+                                                            <th>Name</th>
+                                                            <th>Photo</th>
+                                                            <th>Quantity</th>
+                                                            <th>Price</th>
+                                                            <th>Weight</th>
+                                                            <th>Type</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="product-table">
+
+                                                        </tbody>
+                                                    </table>
+                                                    <div id="product-pageable" class="text-center">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="account">
+                    <div class="modal fade" id="accountModal">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="account-model-header">Account Management</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="form-account">
+                                        <div class="row mb-3">
+                                            <div class="form-group col-md-6">
+                                                <label for="user-id">User Id</label>
+                                                <input type="text" class="form-control" id="user-id"
+                                                       placeholder="" disabled>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="full-name">Fullname</label>
+                                                <input type="text" class="form-control" id="full-name"
+                                                       placeholder="" >
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="form-group col-md-4">
+                                                <label for="phone-number">Phone Number</label>
+                                                <input type="text" class="form-control" id="phone-number"
+                                                       placeholder="" >
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="full-name">Email</label>
+                                                <input type="text" class="form-control" id="email"
+                                                       placeholder="">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="day-of-birth">Day Of Birth</label>
+                                                <input type="date" class="form-control" id="day-of-birth"
+                                                       placeholder="" >
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="form-group col-md-4">
+                                                <label for="full-name">Password</label>
+                                                <input type="password" class="form-control" id="password"
+                                                       placeholder="" >
+                                            </div>
+                                            <div class="form-group col-md-8">
+                                                <label for="user-id">Address</label>
+                                                <input type="text" class="form-control" id="user-address"
+                                                       placeholder="" required>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="form-group col-md-4">
+                                                <label>Gender</label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="gender"
+                                                           id="gender-male" value="male" checked>
+                                                    <label class="form-check-label" for="gender-male">
+                                                        Male
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="gender"
+                                                           id="gender-female" value="female">
+                                                    <label class="form-check-label" for="gender-female">
+                                                        Female
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Active</label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="active"
+                                                           id="active-yes" value="true" checked>
+                                                    <label class="form-check-label" for="active-yes">
+                                                        Active
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="active"
+                                                           id="active-no" value="false">
+                                                    <label class="form-check-label" for="active-no">
+                                                        InActive
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Active</label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="role"
+                                                           id="admin-yes" value="ROLE_ADMIN" checked>
+                                                    <label class="form-check-label" for="active-yes">
+                                                        Admin
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="role"
+                                                           id="admin-no" value="ROLE_USER">
+                                                    <label class="form-check-label" for="active-no">
+                                                        User
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="save-account" type="button" class="btn btn-success">create</button>
+                                    <button id="update-account" type="button" class="btn btn-warning">Update</button>
+                                    <button id="reset-account" type="button" class="btn btn-primary">Reset</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div>
+                                        <button id="create-account" type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
+                                                data-bs-target="#accountModal">
+                                            <i class="fa-solid fa-plus"></i> Create Account
+                                        </button>
+                                    </div>
+                                    <div class="table mt-3">
+                                        <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <table class="table table-hover">
+                                                        <thead>
+                                                        <tr role="row">
+                                                            <th>User ID</th>
+                                                            <th>UserName</th>
+                                                            <th>Full Name</th>
+                                                            <th>Email</th>
+                                                            <th>Phone Number</th>
+                                                            <th>Gender</th>
+                                                            <th>Active</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="account-table">
+
+                                                        </tbody>
+                                                    </table>
+                                                    <div id="account-pageable" class="text-center">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="coupon">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Form</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="form-account">
+                                        <div class="row mb-3">
+                                            <div class="form-group col-md-6">
+                                                <label for="code">Code</label>
+                                                <input type="text" class="form-control" id="code" placeholder="">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="amount">Amount</label>
+                                                <input type="text" class="form-control" id="amount" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="form-group col-md-6">
+                                                <label for="start-date">Start Date</label>
+                                                <input type="date" class="form-control" id="start-date" placeholder="">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="end-date">End Date</label>
+                                                <input type="date" class="form-control" id="end-date" placeholder="">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="description">Description</label>
+                                                <input type="text" class="form-control" id="description" placeholder="">
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Add</button>
+                                        <button type="button" class="btn btn-secondary">Change</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                    </button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div>
+                                        <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">
+                                            <i class="fa-solid fa-plus"></i> Add Customer
+                                        </button>
+                                    </div>
+                                    <div class="table mt-3">
+                                        <div id="DataTables_Table_0_wrapper"
+                                             class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <table class="table table-hover table-centered datatable dt-responsive nowrap dataTable no-footer dtr-inline"
+                                                           style="border-collapse: collapse; border-spacing: 0px; width: 100%;"
+                                                           id="DataTables_Table_0" role="grid"
+                                                           aria-describedby="DataTables_Table_0_info">
+                                                        <thead class="thead-light">
+                                                        <tr role="row">
+                                                            <th class="sorting_asc" tabindex="0"
+                                                                aria-controls="DataTables_Table_0" rowspan="1"
+                                                                colspan="1" style="width: 165px;" aria-sort="ascending"
+                                                                aria-label="Customer: activate to sort column descending">
+                                                                Customer
+                                                            </th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="DataTables_Table_0" rowspan="1"
+                                                                colspan="1" style="width: 306px;"
+                                                                aria-label="Email: activate to sort column ascending">
+                                                                Email
+                                                            </th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="DataTables_Table_0" rowspan="1"
+                                                                colspan="1" style="width: 159px;"
+                                                                aria-label="Phone: activate to sort column ascending">
+                                                                Phone
+                                                            </th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="DataTables_Table_0" rowspan="1"
+                                                                colspan="1" style="width: 176px;"
+                                                                aria-label="Wallet Balance: activate to sort column ascending">
+                                                                Wallet Balance
+                                                            </th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="DataTables_Table_0" rowspan="1"
+                                                                colspan="1" style="width: 145px;"
+                                                                aria-label="Joining Date: activate to sort column ascending">
+                                                                Joining Date
+                                                            </th>
+                                                            <th style="width: 120px;" class="sorting_disabled"
+                                                                rowspan="1" colspan="1" aria-label="Action">Action
+                                                            </th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr class="odd">
+                                                            <td class="sorting_1">Angelyn Hardin</td>
+                                                            <td>AngelynHardin@dayrep.com</td>
+                                                            <td>913-248-2690</td>
+                                                            <td>$ 2435</td>
+                                                            <td>05 Apr, 2020</td>
+                                                            <td id="tooltip-container2">
+                                                                <a href="javascript:void(0);" class="me-3 text-primary"
+                                                                   data-bs-container="#tooltip-container2"
+                                                                   data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                   title="" data-bs-original-title="Edit"
+                                                                   aria-label="Edit"><i class="fa-solid fa-pencil"></i></a>
+                                                                <a href="javascript:void(0);" class="text-danger"
+                                                                   data-bs-container="#tooltip-container2"
+                                                                   data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                   title="" data-bs-original-title="Delete"
+                                                                   aria-label="Delete"><i
+                                                                        class="fa-solid fa-trash-can"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="order">
+                    <div class="modal fade" id="orderModal">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="order-model-header">Order management</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="form-product">
+                                        <div class="row mb-3">
+                                            <div class="form-group col-md-6">
+                                                <label for="order-id">Order ID</label>
+                                                <input type="text" name="orderID" class="form-control" id="order-id"
+                                                       placeholder="Order ID" disabled>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="order-status">Order Status</label>
+                                                <select id="order-status" name="orderStatus" class="form-control">
+                                                    <option value="">Select Product Status</option>
+                                                    <option value="WAIT_FOR_CONFIRMATION">WAIT_FOR_CONFIRMATION</option>
+                                                    <option value="ON_DELIVERY">ON_DELIVERY</option>
+                                                    <option value="DELIVERED">DELIVERED</option>
+                                                    <option value="RETURNS">RETURNS</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="form-group col-md-4">
+                                                <label for="order-date">Order Date</label>
+                                                <input type="text" name="orderID" class="form-control" id="order-date"
+                                                       placeholder="Order Date" disabled>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="shipping-fee">Shipping Fee</label>
+                                                <input type="text" name="orderID" class="form-control" id="shipping-fee"
+                                                       placeholder="Order Date" disabled>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="order-total">Total</label>
+                                                <input type="text" name="orderID" class="form-control" id="order-total"
+                                                       placeholder="Order Total" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="form-group col-md-12">
+                                                <label for="address-shipping">Address Shipping</label>
+                                                <input type="text" name="orderID" class="form-control"
+                                                       id="address-shipping"
+                                                       placeholder="Address shipping" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-12">
+                                                <textarea id="order-note" class="form-control" rows="4"
+                                                          disabled></textarea>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="row text-red mt-3">
+                                        <h4 class="text-center">Order Details</h4>
+                                    </div>
+                                    <div id="show-order-details" class="mt-3">
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="order-update" type="button" class="btn btn-warning">Update</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-end">
+                                        <select id="order-status-filter" name="orderStatus" class="form-control col-md-3">
+                                            <option value="WAIT_FOR_CONFIRMATION">WAIT_FOR_CONFIRMATION</option>
+                                            <option value="ON_DELIVERY">ON_DELIVERY</option>
+                                            <option value="DELIVERED">DELIVERED</option>
+                                            <option value="RETURNS">RETURNS</option>
+                                        </select>
+                                    </div>
+                                    <div class="table mt-3">
+                                        <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <table class="table table-hover">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Date</th>
+                                                            <th>Payment Method</th>
+                                                            <th>Payment Status</th>
+                                                            <th>Order Status</th>
+                                                            <th>Address Shipping</th>
+                                                            <th>Shipping Fee</th>
+                                                            <th>Total Amount</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="order-table">
+
+                                                        </tbody>
+                                                    </table>
+                                                    <div id="order-pageable" class="text-center">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="textEditorBlog">
+                    <div>
+                        <h2 class="text-green">Blog Management</h2>
+                        <form class="form-product" method="post" enctype="multipart/form-data">
+                            <div class="row mb-4">
+                                <div class="form-group col-md-8">
+                                    <label for="titleBlog">Post Title</label>
+                                    <input type="text" name="titleBlog" class="form-control" id="titleBlog"
+                                           placeholder="Input title here">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="selectedBlogs">Selected Categories</label>
+                                    <select id="selectedBlogs" class="form-control">
+                                        <!--                                        getAllCategory-->
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label>Status</label>
+                                    <div id="activeBlog">
+                                        <label>
+                                            <input type="radio" name="statusActive" value="1" checked> Original
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="statusActive" value="0"> Draft
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2 text-center">
+                                    <label>Thumbnails</label> <br>
+                                    <label for="mockupID">
+                                        <i id="blog-label-image" class="fa-solid fa-plus"></i>
+                                        <img id="imagePreview" style="display: block">
+                                    </label>
+                                    <input type="file" name="mockupID" class="form-control" id="mockupID"
+                                           placeholder="Choose File Thumbnails" accept="image/*" style="display: none">
+                                </div>
+
+                            </div>
+                            <div class="row mb-3">
+                                <div class="form-group col-md-12">
+                                    <label for="contentBlog">Content</label>
+                                    <textarea id="contentBlog" rows="4" cols="50"></textarea>
+                                </div>
+
+                            </div>
+                            <button type="button" name="createBlog" id="createBlog"  class="btn btn-green">Save Blog</button>
+                            <button type="button" id="resetForm"  class="btn btn-cement">Remote Form</button>
+                            <p hidden="hidden" id="idBlogHidden"></p>
+                        </form>
+                    </div>
+                    <br>
+                    <hr>
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr class="table-blog">
+                                    <th>Blog ID</th>
+                                    <th>Category</th>
+                                    <th class="fixed-width-title">Title</th>
+                                    <th>Thumbnails</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody id="table-blog-result">
+                                    <tr class="table-blog">
+<!--                                        getAllBlogs();-->
+                                    </tr>
+                                    </tbody>
+                            </table>
+                            <div class="col-lg-12">
+                                <div class="product__pagination blog__pagination" id="pagination">
+                                    <!--                            renderPagination-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3">
+        <h5>Title</h5>
+        <p>Sidebar content</p>
+    </div>
+</aside>
+<!-- /.control-sidebar -->
+
+<!-- Main Footer -->
+<footer class="main-footer">
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+        Anything you want
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+</footer>
+</div>
+<!-- REQUIRED SCRIPTS -->
+<!--link script-->
+<!--<script th:src="@{/admin/js/shop-grid.js}"></script>-->
+<script th:src="@{/admin/js/dashboard.js}"></script>
+<script th:src="@{/admin/js/category.js}"></script>
+<script th:src="@{/admin/js/blog.js}"></script>
+<script th:src="@{/admin/js/product.js}"></script>
+<script th:src="@{/admin/js/cart.js}"></script>
+<script th:src="@{/admin/js/account.js}"></script>
+
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App-->
+<script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+<!--sweet alert-->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js}"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script th:src="@{https://cdn.jsdelivr.net/npm/sweetalert2@11}"></script>
+<!--Chart cnd-->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js}"
+        integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script th:src="@{https://cdn.jsdelivr.net/npm/chart.js}"></script>
+<!--CKEDITOR 4-->
+<script th:src="@{//cdn.ckeditor.com/4.22.1/full/ckeditor.js}"></script>
+
+</body>
+</html>

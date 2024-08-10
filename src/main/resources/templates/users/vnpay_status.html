@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/user/template/css/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/user/template/css/font-awesome.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/user/template/css/elegant-icons.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/user/template/css/nice-select.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/user/template/css/jquery-ui.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/user/template/css/owl.carousel.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/user/template/css/slicknav.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/user/template/css/style.css}" type="text/css">
+
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js}"
+            integrity="sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" th:href="@{/user/css/index.css}">
+
+    <script th:src="@{/user/js/payment_status.js}"></script>
+
+    <title>Payment status</title>
+</head>
+
+<body>
+<!-- Header Section Begin -->
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="header__logo">
+                    <a href="/vegetable-shopping/home"><img th:src="@{/user/template/img/logo.png}" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <nav class="header__menu">
+                    <ul>
+                        <li class="active"><a href="/vegetable-shopping/home">Home</a></li>
+                        <li><a href="/vegetable-shopping/shop-grid">Shop</a></li>
+
+                        <li><a href="/vegetable-shopping/blog">Blog</a></li>
+                        <li><a href="/vegetable-shopping/contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3">
+                <div class="header__cart">
+                    <ul>
+                        <li class="user-menu">
+                            <a href="#"><i class="fa fa-user"></i></a>
+                            <div class="user-menu-content" id="userMenuContent">
+                            </div>
+                        </li>
+                        <li><a href="/vegetable-shopping/shoping-cart"><i class="fa fa-shopping-bag"></i> <span
+                            class="cart-count-item-span"></span></a></li>
+                    </ul>
+                    <div class="header__cart__price">item: <span class="cart-sum-price-span"></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="humberger__open">
+            <i class="fa fa-bars"></i>
+        </div>
+    </div>
+</header>
+<!-- Header Section End -->
+
+<!-- start body -->
+<div class="body py-5">
+    <div class="container">
+        <div class="w-50 m-auto">
+            <!-- Thêm lớp "my-4" để tạo ra khoảng cách trên và dưới tiêu đề trang -->
+            <h1 id="title_status" class="my-3 text-center"></h1>
+            <!-- Sử dụng lớp "alert" và "alert-danger" để tạo ra thông báo lỗi -->
+            <h2 class="my-2">Payment detail</h2>
+            <!-- Sử dụng lớp "table" và "table-bordered" để tạo ra bảng hiển thị thông tin chi tiết đơn hàng -->
+            <table class="table table-bordered">
+                <tbody id="t_body">
+
+                </tbody>
+            </table>
+            <div id="back_result"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer Section Begin -->
+<footer class="footer spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="footer__about">
+                    <div class="footer__about__logo">
+                        <a href="/vegetable-shopping/home"><img th:src="@{/user/template/img/logo.png}" alt=""></a>
+                    </div>
+                    <ul>
+                        <li>Address: 16 Phan Huy Ich, Go Vap, Ho Chi Minh</li>
+                        <li>Phone: +84 123456789</li>
+                        <li>Email: togetherwewin@m2m.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                <div class="footer__widget">
+                    <h6>Useful Links</h6>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">About Our Shop</a></li>
+                        <li><a href="#">Secure Shopping</a></li>
+                        <li><a href="#">Delivery infomation</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Our Sitemap</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#">Who We Are</a></li>
+                        <li><a href="#">Our Services</a></li>
+                        <li><a href="#">Projects</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Innovation</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="footer__widget">
+                    <h6>Join Our Newsletter Now</h6>
+                    <p>Get E-mail updates about our latest shop and special offers.</p>
+                    <form action="#">
+                        <input type="text" placeholder="Enter your mail">
+                        <button type="submit" class="site-btn">Subscribe</button>
+                    </form>
+                    <div class="footer__widget__social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="footer__copyright">
+                    <div class="footer__copyright__text">
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                            All rights reserved | This template is made with <i class="fa fa-heart"
+                                                                                aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div>
+                    <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->
+
+<script th:src="@{/user/js/clickCheckout.js}"></script>
+<script th:src="@{/user/js/total.js}"></script>
+<script th:src="@{/user/js/cartItem.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

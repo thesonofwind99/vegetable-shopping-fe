@@ -1,0 +1,15 @@
+small:hover a{
+    color: white !important;
+}
+small:hover button>*{
+    color: white !important;
+}
+small:hover{
+    background-color: #7fad39;
+}
+small>button{
+    background-color: transparent;
+}
+.product-name{
+    font-weight: bold;
+}
