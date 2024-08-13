@@ -88,4 +88,9 @@ public class UserController {
         return "users/follow-cart";
     }
 
+    @GetMapping("/user/forgot-password")
+    public String forgotPassword() {
+        return "users/forgot-password";
+    }
+
 }
