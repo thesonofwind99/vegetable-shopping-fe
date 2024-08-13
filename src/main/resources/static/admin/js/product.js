@@ -1,3 +1,22 @@
+async function getAllCategoryForProduct() {
+    try {
+        let response = await axios.get('http://localhost:8080/api/v1/categories');
+        let categories = response.data.content;
+        if (!Array.isArray(categories)) {
+            throw new Error('Categories is not an array');
+        }
+        let result = '';
+        categories.forEach(category => {
+            result += `
+                <option value="${category.categoryId}">${category.categoryName}</option>
+            `;
+        });
+        document.getElementById('product-category-id').innerHTML = result;
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+    }
+}
+
 async function getAllProductAdmin(page = 0, size = 10) {
     try {
         let {data: response} = await axios.get(`http://localhost:8080/api/v1/products?page=${page}&size=${size}`, {
@@ -406,3 +425,4 @@ async function getProductsLikeProductName(page = 0, size = 10) {
 }
 
 window.getAllProductAdmin();
+window.getAllCategoryForProduct()()
