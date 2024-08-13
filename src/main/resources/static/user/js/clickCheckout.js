@@ -125,7 +125,7 @@ async function payWithVNPay(){
             const baseUrl = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
             const formData = new URLSearchParams();
             formData.append('amount', Number(total_amount.replace(/[^0-9]/g, '')));
-            formData.append('orderInfo', 'Payment invoice of ' + document.getElementById('fullname').value);
+            formData.append('orderInfo', encodeURIComponent('Payment invoice of ' + document.getElementById('fullname').value));
             formData.append('baseUrl', baseUrl);
             const response = await axios.post('http://localhost:8080/api/v1/checkout/vnpay/submitOrder', formData, {
                 headers: {

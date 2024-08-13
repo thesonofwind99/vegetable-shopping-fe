@@ -24,7 +24,7 @@ async function loadProducts(categoryId ='', page = 0, sort = 'asc') {
                         </div>
                         <div class="product__item__text">
                             <h6><a href="#">${product.productName}</a></h6>
-                            <h5>$${product.price}</h5>
+                            <h5>${product.price}VND</h5>
                         </div>
                     </div>
                 </div>

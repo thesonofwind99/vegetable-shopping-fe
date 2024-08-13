@@ -22,7 +22,7 @@ async function getAllUser(page = 0, size = 10) {
                             <td class="align-middle">${genderDisplay}</td>
                             <td class="align-middle">${activeDisplay}</td>
                             <td class="align-middle" id="tooltip-container2">
-                                <a id="account-table-edit-${item.userId}" class="me-3 text-primary mx-1" data-bs-toggle="modal" data-bs-target="#categoryModal"><i class="fa-solid fa-pencil"></i></a>
+                                <a id="account-table-edit-${item.userId}" class="me-3 text-primary mx-1" data-bs-toggle="modal" data-bs-target="#accountModal"><i class="fa-solid fa-pencil"></i></a>
                             </td>
                         </tr>
                        `;
@@ -47,17 +47,34 @@ async function getAllUser(page = 0, size = 10) {
         `;
 
         users.forEach(item => {
-            // edit category
-            let categoryEdit = document.getElementById(`category-table-edit-${category.categoryId}`);
+            // edit account
+            let categoryEdit = document.getElementById(`account-table-edit-${item.userId}`);
             categoryEdit.addEventListener('click', async () => {
                 try {
-                    let {data: response} = await axios.get(`http://localhost:8080/api/v1/categories/${category.categoryId}`, {
+                    let {data: response} = await axios.get(`http://localhost:8080/api/v1/users/user-id/${item.userId}`, {
                         headers: {
                             'Authorization': `Bearer ${token}`
                         }
                     });
-                    document.getElementById('category-id').value = response.categoryId;
-                    document.getElementById('category-name').value = response.categoryName;
+                    document.getElementById('user-id').value = response.userId;
+                    document.getElementById('full-name').value = response.fullname;
+                    document.getElementById('phone-number').value = response.phoneNumber;
+                    document.getElementById('email').value = response.email;
+                    document.getElementById('day-of-birth').value = response.dayOfBirth;
+                    document.getElementById('password').disabled = true;
+                    document.getElementById('user-address').value = response.address;
+                    if(response.gender.toLowerCase() === "Male"){
+                        document.getElementById('gender-male').checked = true;
+                    }else if(response.gender.toLowerCase() === "Female"){
+                        document.getElementById('gender-female').checked = true;
+                    }
+                    if(response.active){
+                        document.getElementById('active-yes').checked = true;
+                    }else{
+                        document.getElementById('active-no').checked = true;
+                    }
+
+                    document.getElementById('admin-yes').checked = true;
 
                 } catch (error) {
                     Swal.fire({
@@ -129,7 +146,6 @@ function resetFormAccount() {
     document.getElementById('full-name').value = null;
     document.getElementById('phone-number').value = null;
     document.getElementById('email').value = null;
-    document.getElementById('email').value = null;
     document.getElementById('day-of-birth').value = null;
     document.getElementById('password').value = null;
     document.getElementById('user-address').value = null;
@@ -138,9 +154,9 @@ function resetFormAccount() {
     document.getElementById('admin-yes').checked = true;
 }
 
-document.getElementById('create-account').addEventListener('click', () => {
-    document.getElementById('save-account').disabled = true;
-});
+// document.getElementById('create-account').addEventListener('click', () => {
+//     document.getElementById('save-account').disabled = true;
+// });
 
 
 

@@ -22,12 +22,13 @@ function formatDateTime(dateTimeStr) {
 window.onload = async function () {
     const urlParams = new URLSearchParams(window.location.search);
     const vnp_TransactionStatus = urlParams.get('vnp_TransactionStatus');
-    const vnp_OrderInfo = urlParams.get('vnp_OrderInfo');
+    const vnp_OrderInfo = decodeURIComponent(decodeURIComponent(urlParams.get('vnp_OrderInfo')));
     const vnp_PayDate = urlParams.get('vnp_PayDate');
     const vnp_TransactionNo = urlParams.get('vnp_TransactionNo');
     const vnp_Amount = urlParams.get('vnp_Amount');
     const formattedDateTime = formatDateTime(vnp_PayDate)
     if (vnp_TransactionStatus) {
+        console.log(urlParams.get('vnp_OrderInfo'));
         try {
             let result = '';
             if(vnp_TransactionStatus === '00'){
